@@ -1,18 +1,26 @@
 import express from 'express';
-import {calculateBmi} from './bmiCalculator';
+import { calculateBmi } from './bmiCalculator';
+import { calculator } from './calculator';
 const app = express();
 
-app.get('/ping', (_req, res) => {
-  res.send('pong');
-});
-
-app.get('/hello', (_req, res) => {
-  res.send('Hello Full Stack!');
-});
-
 app.get('/bmi', (req, res) => {
-  const bmi = calculateBmi(Number(req.query.height), Number(req.query.weight));
-  res.send({ ...req.query, bmi });
+  const { height, weight } = req.query;
+  try {
+    const bmi = calculateBmi(Number(height), Number(weight));
+    res.send({ ...req.query, bmi });
+  } catch (e) {
+    res.send({ error: "malformatted parameters" });
+  }
+});
+
+app.get('/calculate', (req, res) => {
+  const { value1, value2, op } = req.query;
+  try {
+    const result = calculator(Number(value1), Number(value2), String(op));
+    res.send({ result });
+  } catch (e) {
+    res.send({ error: `Something went wrong, error message: ${e.message}` });
+  }
 });
 
 const PORT = 3003;

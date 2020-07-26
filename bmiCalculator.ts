@@ -6,10 +6,4 @@ export const calculateBmi = (a: number, b: number) : string => {
     return 'Normal (healthy weight)';
   }
   return 'Overweight';
-}
-
-try {
-  console.log(calculateBmi(180, 74));
-} catch (e) {
-  console.log('Something went wrong, error message: ', e.message);
-}
+};
