@@ -1,12 +1,11 @@
-const calculateBmi = (a: number, b: number) : string => {
+export const calculateBmi = (a: number, b: number) : string => {
   const bmi = b / (a / 100) ** 2;
   if (bmi < 18.5) {
-    return 'Low (healthy weight)';
+    return 'Mild Thinness';
   } else if (18.5 <= bmi && bmi < 25) {
     return 'Normal (healthy weight)';
-  } else if (bmi >= 25) {
-    return 'Obese (healthy weight)';
   }
+  return 'Overweight';
 }
 
 try {
