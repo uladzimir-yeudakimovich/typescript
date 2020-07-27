@@ -8,6 +8,7 @@
     "multiply": "ts-node multiplier.ts",
     "calculate": "ts-node calculator.ts",
     "calculateBmi": "ts-node bmiCalculator.ts",
+    "calculateExercises": "ts-node exerciseCalculator.ts",
     "start": "ts-node index.ts",
     "dev": "ts-node-dev index.ts",
     "lint": "eslint --ext .ts .",

@@ -1,7 +1,10 @@
 import express from 'express';
+const app = express();
+app.use(express.json());
+
 import { calculateBmi } from './bmiCalculator';
 import { calculator } from './calculator';
-const app = express();
+import { calculateExercises } from './exerciseCalculator';
 
 app.get('/bmi', (req, res) => {
   const { height, weight } = req.query;
@@ -9,7 +12,7 @@ app.get('/bmi', (req, res) => {
     const bmi = calculateBmi(Number(height), Number(weight));
     res.send({ ...req.query, bmi });
   } catch (e) {
-    res.send({ error: "malformatted parameters" });
+    res.send({ error: 'Malformatted parameters' });
   }
 });
 
@@ -20,6 +23,16 @@ app.get('/calculate', (req, res) => {
     res.send({ result });
   } catch (e) {
     res.send({ error: `Something went wrong, error message: ${e.message}` });
+  }
+});
+
+app.get('/exercises', (req, res) => {
+  const { target, daily_exercises } = req.query;
+  try {
+    const result = calculateExercises(Number(target), daily_exercises);
+    res.send({ result });
+  } catch (e) {
+    res.send({ error: 'Parameters missing' });
   }
 });
 
