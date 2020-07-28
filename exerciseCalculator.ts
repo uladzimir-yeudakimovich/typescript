@@ -6,7 +6,7 @@ type Result = {
   ratingDescription: string,
   target: number,
   average: number
-}
+};
 
 export const calculateExercises = (target: number, arr: Array<number>): Result => {
   const average = arr.reduce((acc, cur) => acc + cur, 0) / arr.length;

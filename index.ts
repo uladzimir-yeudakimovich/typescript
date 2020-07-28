@@ -26,10 +26,11 @@ app.get('/calculate', (req, res) => {
   }
 });
 
-app.get('/exercises', (req, res) => {
-  const { target, daily_exercises } = req.query;
+app.post('/exercises', (req, res) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const { target, daily_exercises } = req.body;
   try {
-    const result = calculateExercises(Number(target), daily_exercises);
+    const result = calculateExercises(target, daily_exercises);
     res.send({ result });
   } catch (e) {
     res.send({ error: 'Parameters missing' });
